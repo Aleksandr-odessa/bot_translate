@@ -26,14 +26,14 @@ class MoneyForMonth:
         self.data = data
         self.message_list =[]
 
-    def request_summ(self) -> dict:
+    def request_summ(self) -> str:
         list_message = self.request_email()
         if list_message:
             messages = create_list_summ(list_message)
             output = create_output(messages)
-            return output
+            return format_output_translate(output)
         else:
-            return {"message":"За указанный период расчетов не было"}
+            return "За указанный период расчетов не было"
 
     def request_email(self) -> list:
         start_finish_days:tuple=self.day_start_finish()

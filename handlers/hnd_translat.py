@@ -66,12 +66,7 @@ async def get_mail(message: Message, state: FSMContext):
     period_agency.append(message.text)
     period = MoneyForPeriod(period_agency)
     await message.answer(text=replicas["please_wait"])
-    summa_dict: dict = period.request_summ()
-    zero_message = summa_dict.get('message')
-    if not zero_message:
-        message_out: str = format_output_translate(summa_dict)
-    else:
-        message_out: str = zero_message
+    message_out: str = period.request_summ()
     await message.answer(text=message_out, reply_markup=buttons_main(), parse_mode=ParseMode.HTML)
     await state.clear()
     period_agency.clear()
@@ -82,11 +77,6 @@ async def month_chooses(message: Message, state: FSMContext):
     month_day: list = [message.text, "1"]
     month_ = MoneyForMonth(month_day)
     await message.answer(text=replicas["please_wait"])
-    summa_dict: dict = month_.request_summ()
-    zero_message = summa_dict.get('message')
-    if not zero_message:
-        message_out: str = format_output_translate(summa_dict)
-    else:
-        message_out: str = zero_message
+    message_out: str = month_.request_summ()
     await message.answer(text=message_out, reply_markup=buttons_main(), parse_mode=ParseMode.HTML)
     await state.clear()
