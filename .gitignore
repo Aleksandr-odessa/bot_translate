@@ -1,0 +1,7 @@
+/.env
+/.venv/
+/config.py
+/.idea/
+/proba.py
+/__pycache__
+/Users.json
